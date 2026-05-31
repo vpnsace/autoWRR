@@ -1,5 +1,6 @@
-/*AIM- To implement Heap Sort using the Max-Heap data structure in C/C++, demonstrate Build-Max-Heap and Heapify
-operations, and analyze the time and space complexity of the algorithm.*/
+/*AIM- To implement Heap Sort using the Max-Heap data structure in C/C++, demonstrate 
+Build-Max-Heap and Heapify operations, and analyze the time and space complexity 
+of the algorithm.*/
 //PROGRAMMER NAME = {NAME}
 
 #include<iostream>

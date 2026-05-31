@@ -1,5 +1,5 @@
-/* AIM- To implement Quick Sort using the Divide and Conquer approach with Lomuto partitioning and analyze its time and space
-complexity.*/
+/* AIM- To implement Quick Sort using the Divide and Conquer approach with Lomuto 
+partitioning and analyze its time and space complexity.*/
 //PROGRAMMER NAME = {NAME}
 
 #include<iostream>

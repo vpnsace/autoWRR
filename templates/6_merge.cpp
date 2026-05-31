@@ -1,4 +1,5 @@
-//AIM- To implement Merge Sort using the Divide and Conquer approach and analyze its time and space complexity.
+/*AIM- To implement Merge Sort using the Divide and Conquer approach and analyze 
+its time and space complexity.*/
 //PROGRAMMER NAME = {NAME}
 
 #include<iostream>

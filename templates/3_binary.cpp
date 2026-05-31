@@ -1,5 +1,5 @@
-/*AIM- To implement the Binary Search algorithm using an iterative approach (using loops) and to analyze its time and
-space complexity.*/
+/*AIM- To implement the Binary Search algorithm using an iterative approach 
+(using loops) and to analyze its time andspace complexity.*/
 //PROGRAMMER NAME = {NAME}
 
 #include<iostream>

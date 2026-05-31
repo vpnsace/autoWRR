@@ -1,5 +1,6 @@
-/*AIM- To implement multiplication (X*Y), exponentiation (X^Y), and division (X/Y) using the Divide and Conquer
-approach in C++, and analyze their time and space complexities.*/
+/*AIM- To implement multiplication (X*Y), exponentiation (X^Y), and division (X/Y) 
+using the Divide and Conquer approach in C++, and analyze their time and 
+space complexities.*/
 //PROGRAMMER NAME = {NAME}
 
 #include<iostream>
