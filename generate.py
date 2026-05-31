@@ -196,8 +196,8 @@ def generate_lab_pdf(program_name, programmer_name,theme):
 
             page = browser.new_page(
                 viewport={
-                    "width": 1600,
-                    "height": 1200
+                "width": 2500,
+                "height": 1200
                 },
                 device_scale_factor=2
             )

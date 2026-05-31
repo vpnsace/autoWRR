@@ -5,14 +5,14 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background-color: #1e222b; font-family: 'Consolas', monospace; padding: 10px; display: inline-block; }
-        .editor-container { background-color: #21252b; display: flex; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-radius: 6px; overflow: hidden; width: 620px; border: 1px solid #181a1f; }
+        .editor-container { background-color: #21252b; display: flex; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-radius: 6px; overflow: hidden; min-width: 1200px;; border: 1px solid #181a1f; }
         .line-numbers { width: 45px; background-color: #21252b; text-align: right; padding: 15px 10px 15px 0; color: #4b5263; font-size: 14px; line-height: 22px; border-right: 1px solid #181a1f; user-select: none; }
         .line-numbers div { height: 22px; }
         .code-area { flex: 1; padding: 15px; background-color: #21252b; }
         pre { margin: 0; font-family: inherit; font-size: 14px; line-height: 22px; color: #abb2bf; white-space: pre; }
         
         /* Syntax Highlight Token Theme Classes */
-        .comment { color: #5c6370; font-style: italic; }
+        .comment { color: #98C379; font-style: normal; } /* Changed to Green (#008000) and normal font style */
         .directive { color: #c678dd; } 
         .header { color: #98c379; }    
         .keyword { color: #c678dd; }   
