@@ -334,7 +334,7 @@ def merge_lab_manual(programmer_name):
     )
 
     PROGRAM_PAGES = [
-    ("1_linear_code.pdf", 8, 11),
+    ("1_linear_code.pdf", 1, 11),
     ("2_linear_code.pdf", 12, 14),
     ("3_binary_code.pdf", 15, 18),
     ("4_binary_code.pdf", 19, 22),
