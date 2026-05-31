@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: #f0f0f0; font-family: 'Consolas', monospace; padding: 10px; display: inline-block; }
+        
+        /* Light Theme Window Container */
+        .editor-container { 
+            background-color: #ffffff; 
+            display: flex; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15); 
+            border-radius: 6px; 
+            overflow: hidden; 
+            width: 780px; 
+            border: 1px solid #d4d4d4; 
+        }
+        
+        /* Gutter Strip for Line Numbers */
+        .line-numbers { 
+            width: 50px; 
+            background-color: #ffffff; 
+            text-align: right; 
+            padding: 15px 12px 15px 0; 
+            color: #a0a0a0; 
+            font-size: 14px; 
+            line-height: 22px; 
+            border-right: 1px solid #eeeeee; 
+            user-select: none; 
+        }
+        .line-numbers div { height: 22px; }
+        
+        /* Code Canvas Area */
+        .code-area { flex: 1; padding: 15px 20px; background-color: #ffffff; }
+        pre { margin: 0; font-family: inherit; font-size: 14px; line-height: 22px; color: #000000; white-space: pre; }
+        
+        /* Exact Light Theme Syntax Colors from your Screenshot */
+        .comment { color: #008000; font-style: normal; }
+        .directive { color: #a31515; } 
+        .header { color: #a31515; }    
+        .keyword { color: #0000ff; }   
+        .type { color: #000000; }      
+        .function { color: #000000; }  
+        .literal { color: #000000; }   
+        .string { color: #a31515; }    
+        .io { color: #000000; }        
+    </style>
+</head>
+<body>
+    <div class="editor-container">
+        <div class="line-numbers"></div>
+        <div class="code-area">
+            <pre><code></code></pre>
+        </div>
+    </div>
+</body>
+</html>

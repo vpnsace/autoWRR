@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: #f5f5f5; font-family: 'Consolas', 'Courier New', monospace; padding: 10px; display: inline-block; }
+        
+        /* Main Container Framework matching the reference screenshot layout */
+        .editor-container { 
+            background-color: #ffffff; 
+            display: flex; 
+            box-shadow: 0 4px 25px rgba(0,0,0,0.1); 
+            border-radius: 4px; 
+            overflow: hidden; 
+            width: 820px; /* Expanded width to capture the split UI line look */
+            border: 1px solid #dcdcdc; 
+        }
+        
+        /* Clean Left Margin Number Tray Gutter */
+        .line-numbers { 
+            width: 48px; 
+            background-color: #ffffff; 
+            text-align: right; 
+            padding: 15px 12px 15px 0; 
+            color: #2b91af; /* Desaturated crisp blue/gray line counters */
+            font-size: 14px; 
+            line-height: 22px; 
+            border-right: 1px solid #eaeaea; 
+            user-select: none; 
+        }
+        .line-numbers div { height: 22px; }
+        
+        /* Code Canvas Layer splits down the middle with a right panel accent border */
+        .code-area { 
+            flex: 1; 
+            padding: 15px 20px; 
+            background-color: #ffffff; 
+            border-right: 1px solid #e0e0e0; /* Replicates the vertical split layout guide line from the image */
+        }
+        pre { margin: 0; font-family: inherit; font-size: 14px; line-height: 22px; color: #000000; white-space: pre; }
+        
+        /* Precise Token Theme Colors mapped to your exact reference screenshot */
+        .comment { color: #00a2ed; font-style: normal; } /* Bright light-blue comment accent */
+        .directive { color: #008000; } /* Forest green preprocessor statement (#include) */
+        .header { color: #008000; }    
+        .keyword { color: #000000; font-weight: bold; } /* Sharp bold black definitions */
+        .type { color: #000000; }      
+        .function { color: #000000; }  
+        .literal { color: #000000; }   
+        .string { color: #ff0000; } /* Vibrant red text string output quotes */
+        .io { color: #000000; }        
+    </style>
+</head>
+<body>
+    <div class="editor-container">
+        <div class="line-numbers"></div>
+        <div class="code-area">
+            <pre><code></code></pre>
+        </div>
+    </div>
+</body>
+</html>
