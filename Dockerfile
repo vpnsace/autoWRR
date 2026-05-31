@@ -4,6 +4,7 @@ WORKDIR /app
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+RUN python -c "from playwright.sync_api import sync_playwright; print('PLAYWRIGHT OK')"
 
 COPY . .
 
