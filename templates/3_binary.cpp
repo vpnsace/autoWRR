@@ -1,6 +1,6 @@
 /*AIM- To implement the Binary Search algorithm using an iterative approach 
 (using loops) and to analyze its time andspace complexity.*/
-//PROGRAMMER NAME = {NAME}
+//{NAME}
 
 #include<iostream>
 using namespace std;

@@ -1,6 +1,6 @@
 /*AIM- To implement Linear Search using a function that returns the position (index) of 
 the key element in the array, and to analyze its time and space complexity.*/
-//PROGRAMMER NAME = {NAME}
+//{NAME}
 
 #include<iostream>
 using namespace std;

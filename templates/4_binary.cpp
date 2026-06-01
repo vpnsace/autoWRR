@@ -1,6 +1,6 @@
 /*AIM- To implement the Binary Search algorithm using a recursive approach and 
 to analyze its time and space complexity using recurrence relations.*/
-//PROGRAMMER NAME = {NAME}
+//{NAME}
 
 #include<iostream>
 using namespace std;

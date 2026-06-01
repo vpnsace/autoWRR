@@ -2,7 +2,7 @@
 , and Integer Division (X÷Y) — using Recursion in C/C++, understand the concept 
 of base case and recursive case, and analyze the time and space complexity of
 each recursive function.*/
-//PROGRAMMER NAME = {NAME}
+//{NAME}
 
 #include<iostream>
 using namespace std;

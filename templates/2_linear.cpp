@@ -1,7 +1,7 @@
 /*AIM- To implement Linear Search using a void function that prints the result directly 
 (instead of returning a value), and to understand the difference between void and 
 non-void functions.*/
-//PROGRAMMER NAME = {NAME}
+//{NAME}
 
 #include<iostream>
 using namespace std;
