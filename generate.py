@@ -80,7 +80,7 @@ def cpp_syntax_highlighter(text):
 # MAIN
 # =========================
 
-def generate_lab_pdf(program_name, programmer_name,theme,code_ratio=0.80):
+def generate_lab_pdf(program_name, programmer_name,theme,code_ratio=0.75):
 
     print(f"\n🚀 Generating PDF for {program_name}")
 
@@ -436,12 +436,12 @@ def cleanup_generated_files():
 # ========================= 
 # BUILD MANUAL
 # =========================
-def build_manual(programmer_name, theme,code_ratio=0.80):
+def build_manual(programmer_name, theme,code_ratio=0.75):
 
     theme = int(theme)
     code_ratio = float(code_ratio)
     if not (0.50 <= code_ratio <= 0.95):
-        code_ratio = 0.80
+        code_ratio = 0.75
 
     if theme < 1 or theme > 3:
         theme = 1
@@ -493,14 +493,14 @@ if __name__ == "__main__":
     )
 
     code_ratio = input(
-    "Enter code/output ratio (e.g. 0.80 for 80% code, 20% output)\n"
-    "Press ENTER for default (0.80): "
+    "Enter code/output ratio (e.g. 0.75 for 75% code, 25% output)\n"
+    "Press ENTER for default (0.75): "
     ).strip()
 
-    code_ratio = float(code_ratio) if code_ratio else 0.80
+    code_ratio = float(code_ratio) if code_ratio else 0.75
     if not (0.50 <= code_ratio <= 0.95):
-        print("Invalid ratio. Using 0.80")
-        code_ratio = 0.80
+        print("Invalid ratio. Using 0.75")
+        code_ratio = 0.75
 
     theme = int(theme)
     if theme < 1 or theme > 3:

@@ -17,7 +17,9 @@ def generate_pdf():
 
     programmer_name = request.form.get("programmer_name")
     theme = request.form.get("theme")
-    code_ratio = request.form.get("code_ratio", 0.80)
+    code_ratio = request.form.get("code_ratio", 0.75)
+
+    print(f"📄 New Request — Name: {programmer_name} | Theme: {theme} | Ratio: {code_ratio}")
 
     pdf_file = generate.build_manual(
         programmer_name,
