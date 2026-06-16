@@ -238,8 +238,8 @@ def generate_lab_pdf(program_name, programmer_name,theme):
 
     max_width = PAGE_WIDTH - (MARGIN_X * 2)
     available_height = PAGE_HEIGHT - MARGIN_TOP - MARGIN_BOTTOM - GAP
-    code_section_height = available_height * 0.70    # 70% for code
-    output_section_height = available_height * 0.30  # 30% for output
+    code_section_height = available_height * 0.80    # 70% for code
+    output_section_height = available_height * 0.20  # 30% for output
 
     def draw_fitted(image_path, box_x, box_y, box_w, box_h):
 
