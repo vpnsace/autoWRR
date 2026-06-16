@@ -1,26 +1,210 @@
-<form action="/generate" method="POST">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate PDF</title>
+    <style>
+        /* Modern Reset & Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
 
-    <label>Comment</label>
-    <input
-        type="text"
-        name="programmer_name"
-        required
-    >
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
 
-    <br><br>
+        /* Glassmorphism Card Container */
+        .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 450px;
+            transition: transform 0.3s ease;
+        }
 
-    <label>Theme</label>
+        .form-container:hover {
+            transform: translateY(-2px);
+        }
 
-    <select name="theme">
-        <option value="1">VS DARK THEME</option>
-        <option value="2">VS CODE LIGHT THEME</option>
-        <option value="3">DEV C++ LIGHT THEME</option>
-    </select>
+        .form-title {
+            color: #333;
+            margin-bottom: 24px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+        }
 
-    <br><br>
+        /* Form Layout */
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
 
-    <button type="submit">
-        Generate PDF
-    </button>
+        label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-</form>
+        /* Input & Select Styling */
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 1rem;
+            color: #2d3748;
+            background-color: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.3s ease;
+            -webkit-appearance: none; /* Removes default mobile safari styling */
+            appearance: none;
+        }
+
+        /* Custom dropdown arrow for select */
+        .select-wrapper {
+            position: relative;
+        }
+
+        .select-wrapper::after {
+            content: '▼';
+            font-size: 0.8rem;
+            color: #a0aec0;
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        input[type="text"]:focus,
+        select:focus {
+            border-color: #667eea;
+            background-color: #fff;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+        }
+
+        /* Button Styling */
+        button[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);
+            margin-top: 10px;
+        }
+
+        button[type="submit"]:hover {
+            opacity: 0.95;
+            box-shadow: 0 6px 12px rgba(102, 126, 234, 0.35);
+        }
+
+        button[type="submit"]:active {
+            transform: scale(0.98);
+        }
+
+        /* Bottom Wait Notice Styling */
+        .wait-notice {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+            padding: 10px;
+            background-color: #fffaf0;
+            border: 1px solid #feebc8;
+            border-radius: 6px;
+            color: #dd6b20;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .wait-notice svg {
+            flex-shrink: 0;
+            width: 16px;
+            height: 16px;
+            fill: #dd6b20;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 480px) {
+            .form-container {
+                padding: 20px;
+            }
+            .form-title {
+                font-size: 1.3rem;
+            }
+            .wait-notice {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2 class="form-title">ADA UNIT-2 LAB MANUAL GENERATOR</h2>
+        
+        <form action="/generate" method="POST">
+            
+            <div class="form-group">
+                <label for="programmer_name">ADD Comment / Name</label>
+                <input
+                    type="text"
+                    id="programmer_name"
+                    name="programmer_name"
+                    placeholder="Enter name or comment..."
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="theme">Theme</label>
+                <div class="select-wrapper">
+                    <select id="theme" name="theme">
+                        <option value="1">VS DARK THEME</option>
+                        <option value="2">VS CODE LIGHT THEME</option>
+                        <option value="3">DEV C++ LIGHT THEME</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit">
+                Generate PDF
+            </button>
+
+            <div class="wait-notice">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                </svg>
+                <span>Generation may take more than 1 minute. Please wait...</span>
+            </div>
+
+        </form>
+    </div>
+
+</body>
+</html>

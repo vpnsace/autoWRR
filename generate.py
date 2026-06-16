@@ -222,60 +222,63 @@ def generate_lab_pdf(program_name, programmer_name,theme):
         print(e)
         return
 
-   # =========================
-# GENERATE PDF (2 PAGES)
-# =========================
+    # =========================
+    # GENERATE PDF (1 PAGE: CODE ON TOP, OUTPUT ON BOTTOM)
+    # =========================
 
     print("📄 Creating PDF...")
-    
-    
+
     PAGE_WIDTH = 612
     PAGE_HEIGHT = 792
 
+    MARGIN_X = 20
+    MARGIN_TOP = 30
+    MARGIN_BOTTOM = 30
+    GAP = 20
+
+    max_width = PAGE_WIDTH - (MARGIN_X * 2)
+    available_height = PAGE_HEIGHT - MARGIN_TOP - MARGIN_BOTTOM - GAP
+    code_section_height = available_height * 0.70    # 70% for code
+    output_section_height = available_height * 0.30  # 30% for output
+
+    def draw_fitted(image_path, box_x, box_y, box_w, box_h):
+
+        img = Image.open(image_path)
+        img_w, img_h = img.size
+
+        ratio = min(
+            box_w / img_w,
+            box_h / img_h
+        )
+
+        new_w = img_w * ratio
+        new_h = img_h * ratio
+
+        x = box_x + (box_w - new_w) / 2
+        y = box_y + (box_h - new_h) / 2
+
+        pdf.drawImage(
+            image_path,
+            x,
+            y,
+            width=new_w,
+            height=new_h
+        )
+
+        img.close()
+
     # ----------------------------------
-    # PAGE 1 : CODE
+    # OUTPUT — prepare inverted copy if needed (theme 2)
     # ----------------------------------
 
-    code_img = Image.open(code_png)
-    code_w, code_h = code_img.size
-
-    max_width = PAGE_WIDTH - 40
-    max_height = 650
-
-    ratio = min(
-        max_width / code_w,
-        max_height / code_h
-    )
-
-    new_w = code_w * ratio
-    new_h = code_h * ratio
-
-    x = (PAGE_WIDTH - new_w) / 2
-    y = 50
-
-    pdf.drawImage(
-        code_png,
-        x,
-        y,
-        width=new_w,
-        height=new_h
-    )
-
-    pdf.showPage()
-
-    # ----------------------------------
-    # PAGE 2 : OUTPUT
-    # ----------------------------------
-
-    output_img = Image.open(output_png)
-    if str(theme) == "2":
-        output_img = ImageOps.invert(
-        output_img.convert("RGB")
-    )
-        
     temp_output = output_png
 
     if str(theme) == "2":
+
+        output_img = Image.open(output_png)
+        output_img = ImageOps.invert(
+            output_img.convert("RGB")
+        )
 
         temp_output = os.path.join(
             OUTPUT_DIR,
@@ -283,33 +286,44 @@ def generate_lab_pdf(program_name, programmer_name,theme):
         )
 
         output_img.save(temp_output)
+        output_img.close()
 
-    out_w, out_h = output_img.size
+    # ----------------------------------
+    # CODE — top half of the page
+    # ----------------------------------
 
-    ratio = min(
-        max_width / out_w,
-        max_height / out_h
+    code_box_x = MARGIN_X
+    code_box_y = MARGIN_BOTTOM + GAP + output_section_height
+    code_box_w = max_width
+    code_box_h = code_section_height
+
+    draw_fitted(
+        code_png,
+        code_box_x,
+        code_box_y,
+        code_box_w,
+        code_box_h
     )
 
-    new_w = out_w * ratio
-    new_h = out_h * ratio
+    # ----------------------------------
+    # OUTPUT — bottom half of the page
+    # ----------------------------------
 
-    x = (PAGE_WIDTH - new_w) / 2
-    y = (PAGE_HEIGHT - new_h) / 2 - 30
+    output_box_x = MARGIN_X
+    output_box_y = MARGIN_BOTTOM
+    output_box_w = max_width
+    output_box_h = output_section_height
 
-    pdf.drawImage(
+    draw_fitted(
         temp_output,
-        x,
-        y,
-        width=new_w,
-        height=new_h
+        output_box_x,
+        output_box_y,
+        output_box_w,
+        output_box_h
     )
 
     pdf.showPage()
     pdf.save()
-
-    code_img.close()
-    output_img.close()
 
     if str(theme) == "2" and os.path.exists(temp_output):
         os.remove(temp_output)
@@ -325,7 +339,7 @@ def merge_lab_manual(programmer_name):
 
     manual_pdf = os.path.join(
         PDF_DIR,
-        "ADA_Lab_Manual Unit 1.pdf"
+        "Unit_2_manual.pdf"
     )
 
     output_pdf = os.path.join(
@@ -334,15 +348,14 @@ def merge_lab_manual(programmer_name):
     )
 
     PROGRAM_PAGES = [
-    ("1_linear_code.pdf", 1, 11),
-    ("2_linear_code.pdf", 12, 14),
-    ("3_binary_code.pdf", 15, 18),
-    ("4_binary_code.pdf", 19, 22),
-    ("5_heap_code.pdf", 23, 28),
-    ("6_merge_code.pdf", 29, 31),
-    ("7_quick_code.pdf", 32, 35),
-    ("8_op_code.pdf", 36, 39),
-    ("9_op_code.pdf", 40, 42),
+    ("1_code.pdf", 1, 6),
+    ("2_code.pdf", 7, 10),
+    ("3_code.pdf", 11, 13),
+    ("4_code.pdf", 14, 17),
+    ("5_code.pdf", 18,21),
+    ("6_code.pdf", 22, 25),
+    ("7_code.pdf", 26, 28),
+    ("8_code.pdf", 29, 32),
     ]
 
     writer = PdfWriter()
@@ -505,5 +518,3 @@ if __name__ == "__main__":
     programmer_name
     )
     cleanup_generated_files()
-    
-
