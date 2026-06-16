@@ -80,7 +80,7 @@ def cpp_syntax_highlighter(text):
 # MAIN
 # =========================
 
-def generate_lab_pdf(program_name, programmer_name,theme):
+def generate_lab_pdf(program_name, programmer_name,theme,code_ratio=0.80):
 
     print(f"\n🚀 Generating PDF for {program_name}")
 
@@ -238,8 +238,8 @@ def generate_lab_pdf(program_name, programmer_name,theme):
 
     max_width = PAGE_WIDTH - (MARGIN_X * 2)
     available_height = PAGE_HEIGHT - MARGIN_TOP - MARGIN_BOTTOM - GAP
-    code_section_height = available_height * 0.80    # 70% for code
-    output_section_height = available_height * 0.20  # 30% for output
+    code_section_height = available_height * code_ratio
+    output_section_height = available_height * (1 - code_ratio)
 
     def draw_fitted(image_path, box_x, box_y, box_w, box_h):
 
@@ -436,9 +436,12 @@ def cleanup_generated_files():
 # ========================= 
 # BUILD MANUAL
 # =========================
-def build_manual(programmer_name, theme):
+def build_manual(programmer_name, theme,code_ratio=0.80):
 
     theme = int(theme)
+    code_ratio = float(code_ratio)
+    if not (0.50 <= code_ratio <= 0.95):
+        code_ratio = 0.80
 
     if theme < 1 or theme > 3:
         theme = 1
@@ -460,7 +463,8 @@ def build_manual(programmer_name, theme):
         generate_lab_pdf(
             program_name=program_name,
             programmer_name=programmer_name,
-            theme=theme
+            theme=theme,
+            code_ratio=code_ratio
         )
 
     merge_lab_manual(programmer_name)
@@ -488,6 +492,16 @@ if __name__ == "__main__":
         "Enter the theme number: "
     )
 
+    code_ratio = input(
+    "Enter code/output ratio (e.g. 0.80 for 80% code, 20% output)\n"
+    "Press ENTER for default (0.80): "
+    ).strip()
+
+    code_ratio = float(code_ratio) if code_ratio else 0.80
+    if not (0.50 <= code_ratio <= 0.95):
+        print("Invalid ratio. Using 0.80")
+        code_ratio = 0.80
+
     theme = int(theme)
     if theme < 1 or theme > 3:
         print("Invalid theme. Using Theme 1")
@@ -511,7 +525,8 @@ if __name__ == "__main__":
         generate_lab_pdf(
             program_name=program_name,
             programmer_name=programmer_name,
-            theme=theme
+            theme=theme,
+            code_ratio=code_ratio
         )
     print("\n🎉 All Program PDFs Generated")
     merge_lab_manual(

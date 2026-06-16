@@ -17,10 +17,12 @@ def generate_pdf():
 
     programmer_name = request.form.get("programmer_name")
     theme = request.form.get("theme")
+    code_ratio = request.form.get("code_ratio", 0.80)
 
     pdf_file = generate.build_manual(
         programmer_name,
-        theme
+        theme,
+        code_ratio
     )
 
     @after_this_request
